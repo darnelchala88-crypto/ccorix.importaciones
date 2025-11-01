@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="py-4 text-center">
+  <h1>Bienvenido a Ccorix Importaciones</h1>
+  <p class="lead">Administra productos, ventas e inventario.</p>
+  <p><a class="btn btn-primary" href="{{ url_for('products_list') }}">Ver Productos</a></p>
+</div>
+{% endblock %}

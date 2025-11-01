@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Carrito</h3>
+{% if items %}
+<table class="table">
+  <thead><tr><th>Producto</th><th>Cantidad</th><th>Precio</th><th>Total</th><th></th></tr></thead>
+  <tbody>
+    {% for it in items %}
+    <tr>
+      <td>{{ it.product.name }}</td><td>{{ it.qty }}</td><td>$ {{ '%.2f'|format(it.product.price) }}</td><td>$ {{ '%.2f'|format(it.total) }}</td>
+      <td><form method="post" action="{{ url_for('cart_remove', pid=it.product.id) }}">{{ csrf_token() }}<button class="btn btn-sm btn-danger">Quitar</button></form></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<h4>Total: $ {{ '%.2f'|format(total) }}</h4>
+<form method="post" action="{{ url_for('checkout') }}">{{ csrf_token() }}<button class="btn btn-primary">Pagar</button></form>
+{% else %}
+<p>No hay productos en el carrito.</p>
+{% endif %}
+{% endblock %}

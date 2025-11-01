@@ -1,0 +1,5 @@
+<!doctype html><html><head><meta charset='utf-8'><style>body{font-family:Arial;}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ddd;padding:8px}</style></head><body>
+<h2>Factura #{{ invoice.id }}</h2><p>Fecha: {{ invoice.created_at }}</p>
+<table><thead><tr><th>Producto</th><th>Cantidad</th><th>Precio</th><th>Total</th></tr></thead><tbody>
+{% for it in items %}<tr><td>{{ it.name }}</td><td>{{ it.qty }}</td><td>${{ '%.2f'|format(it.price) }}</td><td>${{ '%.2f'|format(it.qty*it.price) }}</td></tr>{% endfor %}
+</tbody></table><h3>Total: ${{ '%.2f'|format(invoice.total) }}</h3></body></html>

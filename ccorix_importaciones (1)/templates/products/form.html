@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card p-3">
+      <h4>{% if product %}Editar{% else %}Nuevo{% endif %} Producto</h4>
+      <form method="post" enctype="multipart/form-data">{{ form.hidden_tag() }}
+        <div class="mb-3">{{ form.name.label }}{{ form.name(class_='form-control') }}</div>
+        <div class="mb-3">{{ form.description.label }}{{ form.description(class_='form-control', rows=3) }}</div>
+        <div class="row">
+          <div class="col">{{ form.price.label }}{{ form.price(class_='form-control') }}</div>
+          <div class="col">{{ form.stock.label }}{{ form.stock(class_='form-control') }}</div>
+        </div>
+        <div class="mb-3"><label>Imagen (opcional)</label><input type="file" name="image" class="form-control"></div>
+        <div class="d-grid"><button class="btn btn-success">{{ 'Actualizar' if product else 'Crear' }}</button></div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

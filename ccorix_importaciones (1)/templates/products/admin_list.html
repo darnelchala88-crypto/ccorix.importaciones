@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Administrar Productos</h3>
+  <a class="btn btn-primary" href="{{ url_for('admin_new_product') }}">Nuevo Producto</a>
+</div>
+<table class="table table-striped">
+  <thead><tr><th>ID</th><th>Producto</th><th>Stock</th><th>Precio</th><th>Acciones</th></tr></thead>
+  <tbody>
+    {% for p in products %}
+    <tr>
+      <td>{{ p.id }}</td>
+      <td>{{ p.name }}</td>
+      <td>{{ p.stock }}</td>
+      <td>$ {{ '%.2f'|format(p.price) }}</td>
+      <td>
+        <a class="btn btn-sm btn-warning" href="{{ url_for('admin_edit_product', pid=p.id) }}">Editar</a>
+        <form method="post" action="{{ url_for('admin_delete_product', pid=p.id) }}" style="display:inline">{{ csrf_token() }}<button class="btn btn-sm btn-danger">Eliminar</button></form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

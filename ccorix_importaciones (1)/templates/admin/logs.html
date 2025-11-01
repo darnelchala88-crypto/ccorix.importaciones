@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Logs de acceso (últimos 500)</h3>
+<table class="table table-sm"><thead><tr><th>Usuario</th><th>Ruta</th><th>IP</th><th>UA</th><th>Fecha</th></tr></thead>
+<tbody>{% for l in logs %}<tr><td>{{ l.user }}</td><td>{{ l.path }}</td><td>{{ l.ip }}</td><td>{{ l.ua }}</td><td>{{ l.timestamp }}</td></tr>{% endfor %}</tbody></table>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-3">
+  <h4>Factura #{{ invoice.id }}</h4>
+  <p>Fecha: {{ invoice.created_at }}</p>
+  <table class="table">
+    <thead><tr><th>Producto</th><th>Cantidad</th><th>Precio</th><th>Total</th></tr></thead>
+    <tbody>
+      {% for it in items %}
+      <tr><td>{{ it.name }}</td><td>{{ it.qty }}</td><td>$ {{ '%.2f'|format(it.price) }}</td><td>$ {{ '%.2f'|format(it.qty*it.price) }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <h5>Total: $ {{ '%.2f'|format(invoice.total) }}</h5>
+  <a class="btn btn-outline-primary" href="{{ url_for('invoice_pdf', invoice_id=invoice.id) }}">Imprimir/Descargar PDF</a>
+  <button class="btn btn-secondary" onclick="window.print()">Imprimir (navegador)</button>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card p-3">
+      <h4 class="card-title">Registro</h4>
+      <form method="post">{{ form.hidden_tag() }}
+        <div class="mb-3">{{ form.username.label }}{{ form.username(class_='form-control') }}</div>
+        <div class="mb-3">{{ form.password.label }}{{ form.password(class_='form-control') }}</div>
+        <div class="mb-3">{{ form.confirm.label }}{{ form.confirm(class_='form-control') }}</div>
+        <div class="mb-3">{{ form.role.label }}{{ form.role(class_='form-select') }}</div>
+        <div class="d-grid">{{ form.submit(class_='btn btn-success') }}</div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
